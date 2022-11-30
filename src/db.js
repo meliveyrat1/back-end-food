@@ -43,18 +43,18 @@ sequelize.models = Object.fromEntries(capsEntries);
 
 // En sequelize.models están todos los modelos importados como propiedades
 // Para relacionarlos hacemos un destructuring
-const { Recipe, Diet, NameRecipes } = sequelize.models;
+const { Recipe, Diet, /* NameRecipes */ } = sequelize.models;
 
 // Aca vendrian las relaciones
 // Product.hasMany(Reviews):
 
 Diet.belongsToMany(Recipe, { through: "recipes_diets" });
 Recipe.belongsToMany(Diet, { through: "recipes_diets" });
-Recipe.hasOne(NameRecipes);
+/* Recipe.hasOne(NameRecipes);
 NameRecipes.belongsTo(Recipe);
 Diet.belongsToMany(NameRecipes,{ through: 'NameRecipes_Diet'});
 NameRecipes.belongsToMany(Diet,{ through: 'NameRecipes_Diet'});
-
+ */
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
   conn: sequelize, // para importart la conexión { conn } = require('./db.js');
